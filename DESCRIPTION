@@ -1,0 +1,7 @@
+Package: lgmisc
+Title: Laurent's helper functions
+Version: 0.1.0
+Author: Laurent Gatto <lg390@cam.ac.uk>
+Maintainer: Laurent Gatto <lg390@cam.ac.uk>
+Description: Miscellaneous helper functions. 
+License: GLP-3
