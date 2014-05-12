@@ -1,1 +1,2 @@
-export(makeFigName)
+export(cputools,
+       makeFigName)

@@ -1,7 +1,8 @@
-Package: cpumisc
-Title: Laurent's helper functions
+Package: cputools
+Title: Various helper functions
 Version: 0.1.0
 Author: Laurent Gatto <lg390@cam.ac.uk>
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
-Description: Miscellaneous helper functions. 
+Description: Miscellaneous helper functions aimed at facilitating and
+	     standardising simple repetitive tasks.	     
 License: GPL-3
