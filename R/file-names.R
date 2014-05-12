@@ -1,9 +1,8 @@
-makeFileName <- function(prefix, prefix0, date = TRUE, path) {
-    fn <- paste0(prefix0, prefix)
+makeFileName <- function(prefix, ext, prefix0, date = TRUE, path) {
+    fn <- paste0(prefix0, "-", prefix)
     if (date)
-        fn <- paste0("-", fn, gsub(" ", "-", date()))
-    if (!missing(path))
-        fn <- file.path(path, fn)
+        fn <- paste0(fn, "-", gsub(" ", "-", date()))
+    fn <- file.path(path, fn)
     fn <- paste(fn, ext, sep = ".")
     if (file.exists(fn))
         warning("File exists!")
@@ -25,7 +24,7 @@ makeFileName <- function(prefix, prefix0, date = TRUE, path) {
 ##' \code{Fig} for a figure and \code{Dat} for a data file.
 ##' @param date Should the data (as reported by \code{date}) be used
 ##' as part of the file name? Default is \code{TRUE}.
-##' @param path The path to the file. Default is \code{"./"}.
+##' @param path The path to the file. Default is \code{"."}.
 ##' @return A \code{character} with the figure file name.
 ##' @author Laurent Gatto
 ##' @rdname makeFigName
@@ -36,13 +35,13 @@ makeFileName <- function(prefix, prefix0, date = TRUE, path) {
 ##' makeFigName("foo", path = "~/projects/big-project/figs")
 ##' makeDatName("foo", path = "~/projects/big-project/Data")
 makeFigName <- function(prefix, ext = "pdf",
-                        prefix0 = "Fig-",                        
-                        date = TRUE, path = "./") 
+                        prefix0 = "Fig",                        
+                        date = TRUE, path = ".") 
     makeFileName(prefix, ext, prefix0, date, path)
 
     
 ##' @rdname makeFigName
 makeDatName <- function(prefix, ext = "rda",
-                        prefix0 = Dat,
-                        date = TRUE, path = "./")
+                        prefix0 = "Dat",
+                        date = TRUE, path = ".")
         makeFileName(prefix, ext, prefix0, date, path)

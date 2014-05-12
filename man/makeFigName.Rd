@@ -4,11 +4,11 @@
 \alias{makeFigName}
 \title{Create a file name.}
 \usage{
-makeFigName(prefix, ext = "pdf", prefix0 = "Fig-", date = TRUE,
-  path = "./")
+makeFigName(prefix, ext = "pdf", prefix0 = "Fig", date = TRUE,
+  path = ".")
 
-makeDatName(prefix, ext = "rda", prefix0 = Dat, date = TRUE,
-  path = "./")
+makeDatName(prefix, ext = "rda", prefix0 = "Dat", date = TRUE,
+  path = ".")
 }
 \arguments{
 \item{prefix}{A file specific prefix.}
@@ -22,7 +22,7 @@ makeDatName(prefix, ext = "rda", prefix0 = Dat, date = TRUE,
 \item{date}{Should the data (as reported by \code{date}) be used
 as part of the file name? Default is \code{TRUE}.}
 
-\item{path}{The path to the file. Default is \code{"./"}.}
+\item{path}{The path to the file. Default is \code{"."}.}
 }
 \value{
 A \code{character} with the figure file name.
