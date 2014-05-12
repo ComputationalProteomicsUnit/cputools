@@ -20,9 +20,9 @@
 makeFigName <- function(prefix, ext = "pdf",
                         prefix0 = "Fig-",                        
                         date = TRUE, path, ...) {
-    fn <- paste0(prefix0, prefix, "-")
+    fn <- paste0(prefix0, prefix)
     if (date)
-        fn <- paste0(fn, gsub(" ", "-", date()))
+        fn <- paste0("-", fn, gsub(" ", "-", date()))
     if (!missing(path))
         fn <- file.path(path, fn)
     fn <- paste(fn, ext, sep = ".")
