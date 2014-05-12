@@ -1,4 +1,10 @@
 Various helper functions
 ============
 
-See `?cputools` for an overview.
+See `?cputools` for an overview:
+
+```r
+cputools functions:
+ cputools
+ makeFigName
+```
