@@ -25,24 +25,24 @@ makeFileName <- function(prefix, prefix0, date = TRUE, path) {
 ##' \code{Fig} for a figure and \code{Dat} for a data file.
 ##' @param date Should the data (as reported by \code{date}) be used
 ##' as part of the file name? Default is \code{TRUE}.
-##' @param path An optional path to the figure file.
+##' @param path The path to the file. Default is \code{"./"}.
 ##' @return A \code{character} with the figure file name.
 ##' @author Laurent Gatto
 ##' @rdname makeFigName
 ##' @examples
 ##' makeFigName("foo")
 ##' makeFigName("foo", date = FALSE)
-##' makeDataName("foo", date = FALSE)
+##' makeDatName("foo", date = FALSE)
 ##' makeFigName("foo", path = "~/projects/big-project/figs")
 ##' makeDatName("foo", path = "~/projects/big-project/Data")
 makeFigName <- function(prefix, ext = "pdf",
                         prefix0 = "Fig-",                        
-                        date = TRUE, path) 
+                        date = TRUE, path = "./") 
     makeFileName(prefix, ext, prefix0, date, path)
 
     
 ##' @rdname makeFigName
-makeDataName <- function(prefix, ext = "rda",
-                         prefix0 = Dat,
-                         date = TRUE, path)
+makeDatName <- function(prefix, ext = "rda",
+                        prefix0 = Dat,
+                        date = TRUE, path = "./")
         makeFileName(prefix, ext, prefix0, date, path)
