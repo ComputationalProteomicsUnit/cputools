@@ -1,6 +1,6 @@
 Package: cputools
 Title: Various helper functions
-Version: 0.1.0
+Version: 0.1.1
 Author: Laurent Gatto <lg390@cam.ac.uk>
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: Miscellaneous helper functions aimed at facilitating and

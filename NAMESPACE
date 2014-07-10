@@ -1,3 +1,4 @@
 export(cputools,
+       ht,
        makeDatName,
        makeFigName)
