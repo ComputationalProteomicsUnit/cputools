@@ -45,3 +45,25 @@ makeDatName <- function(prefix, ext = "rda",
                         prefix0 = "Dat",
                         date = TRUE, path = ".")
         makeFileName(prefix, ext, prefix0, date, path)
+
+##' Plot to the pdf and png devices at once.
+##'
+##' @title Plot to pdf and png
+##' @param expr A quoted expression that produces the desired plot.
+##' @param fn The file name (without extension).
+##' @return Produces the files \code{fn.pdf} and \code{fn.png}.
+##' @author Laurent Gatto
+##' @examples
+##' p <- quote({
+##'    plot(1:10)
+##'    points(10:1)
+##' })
+##' pdfpng(p, "myfig")
+pdfpng <- function(expr, fn) {
+    pdf(paste(fn, "pdf", sep = "."))
+    eval(expr)
+    dev.off()
+    png(paste(fn, "png", sep = "."))
+    eval(expr)
+    dev.off()
+}

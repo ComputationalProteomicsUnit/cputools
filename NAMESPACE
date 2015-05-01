@@ -1,5 +1,8 @@
 export(cputools,
        ht,
        darken, lighten,
+       colour_picker,
+       color_picker,
        makeDatName,
-       makeFigName)
+       makeFigName,
+       pdfpng)
