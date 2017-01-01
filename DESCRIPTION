@@ -6,6 +6,12 @@ Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: Miscellaneous helper functions aimed at facilitating and
     standardising simple repetitive tasks.
 Imports: grDevices, graphics, utils, scales    		  
-Suggests: testthat
+Suggests:
+    testthat,
+    BiocStyle,
+    httr,
+    knitr,
+    rmarkdown
 License: GPL-3
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr

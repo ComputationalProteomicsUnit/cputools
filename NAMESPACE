@@ -5,7 +5,7 @@ importFrom("utils", "head", "tail")
 importFrom("scales", "col2hcl")
 
 
-export(cputools,
+export(cputools, cpuwww,
        biocVersions,
        makeTravisShield, makeCodecovShield,
        makeBiocBuildShield, makeBiocCovrShield, 
