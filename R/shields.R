@@ -17,7 +17,10 @@
 ##' @author Laurent Gatto
 ##' @rdname shields
 ##' @examples
-##' makeTravisShield("pRoloc")
+##' makeTravisShield("pRoloc", user = "lgatto")
+##' ## default user
+##' options(GitHubUserName = "ComputationalProteomicsUnit")
+##' makeCodecovShield("cputools")
 makeTravisShield <- function(pkg, user = options()[["GitHubUserName"]],
                              branch = "master") {
     stopifnot(is.character(user))
@@ -32,7 +35,8 @@ makeTravisShield <- function(pkg, user = options()[["GitHubUserName"]],
 }
 
 ##' @rdname shields
-##' makeCodecovShield("MSnbase")
+##' @examples
+##' makeCodecovShield("MSnbase", user = "lgatto")
 makeCodecovShield <- function(pkg, user = options()[["GitHubUserName"]],
                              branch = "master") {
     stopifnot(is.character(user))

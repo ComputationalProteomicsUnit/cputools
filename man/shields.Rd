@@ -3,10 +3,14 @@
 \name{makeTravisShield}
 \alias{makeBiocBuildShield}
 \alias{makeBiocCovrShield}
+\alias{makeCodecovShield}
 \alias{makeTravisShield}
 \title{Generate the markdown code the a package shields.}
 \usage{
 makeTravisShield(pkg, user = options()[["GitHubUserName"]],
+  branch = "master")
+
+makeCodecovShield(pkg, user = options()[["GitHubUserName"]],
   branch = "master")
 
 makeBiocBuildShield(pkg, branch = c("devel", "release"))
@@ -36,7 +40,11 @@ Functions to generate package travis-ci, codecov, Bioconductor
 build status and Biocondcutor test coverage shields
 }
 \examples{
-makeTravisShield("pRoloc")
+makeTravisShield("pRoloc", user = "lgatto")
+## default user
+options(GitHubUserName = "ComputationalProteomicsUnit")
+makeCodecovShield("cputools")
+makeCodecovShield("MSnbase", user = "lgatto")
 makeBiocBuildShield("MSnbase")
 makeBiocBuildShield("MSnbase", branch = "release")
 makeBiocCovrShield("MSnbase")

@@ -1,8 +1,16 @@
+importFrom("grDevices", "col2rgb", "colours", "dev.off", "pdf", "png",
+           "rgb", "xy.coords")
+importFrom("graphics", "identify", "image", "text")
+importFrom("utils", "head", "tail")
+importFrom("scales", "col2hcl")
+
+
 export(cputools,
+       biocVersions,
        makeTravisShield, makeCodecovShield,
        makeBiocBuildShield, makeBiocCovrShield, 
        makeGithubUrl, makeGithubPageUrl, makeGithubIssuesUrl,
-       pkgqsts,       
+       pkgqsts,
        ht,
        darken, lighten,
        colour_picker,
