@@ -4,5 +4,7 @@ Version: 0.1.2
 Author: Laurent Gatto <lg390@cam.ac.uk>
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: Miscellaneous helper functions aimed at facilitating and
-	     standardising simple repetitive tasks.	     
+    standardising simple repetitive tasks.
 License: GPL-3
+RoxygenNote: 5.0.1
+Suggests: testthat

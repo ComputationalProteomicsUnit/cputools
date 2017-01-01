@@ -9,8 +9,10 @@
 ##'     \code{options()[["GitHubUserName"]]}. Argument is not recycled
 ##'     of more than one package is provided.
 ##' @param branch Mandatory branch name. Default is
-##'     \code{"masker"}. Argument is not recycled of more than one
-##'     package is provided.
+##'     \code{"master"}. Argument is not recycled of more than one
+##'     package is provided. For Bioconductor shields (functions
+##'     \code{makeBiocBuildShield} and \code{makeBiocCovrShield}),
+##'     branch is one of \code{"devel"} (default) or \code{"release"}.
 ##' @return A \code{character} with the shield in markdown.
 ##' @author Laurent Gatto
 ##' @rdname shields
@@ -37,13 +39,48 @@ makeCodecovShield <- function(pkg, user = options()[["GitHubUserName"]],
     stopifnot(is.character(branch))
     stopifnot(identical(length(pkg), length(user)))
     stopifnot(identical(length(pkg), length(branch)))
-    paste0("[![codecov](https://codecov.io/gh/", user, "/", pkg,
-           "/branch/", branch,
-           "/graph/badge.svg)](https://codecov.io/gh/", user, "/",
-           pkg, ")")
+    ans <- paste0("[![codecov](https://codecov.io/gh/", user, "/", pkg,
+                  "/branch/", branch,
+                  "/graph/badge.svg)](https://codecov.io/gh/", user, "/",
+                  pkg, ")")
+    cat(ans, "\n")
 }
 
     
-makeBiocBuildShield <- function()
+##' @rdname shields
+##' makeBiocBuildShield("MSnbase")
+##' makeBiocBuildShield("MSnbase", branch = "release")
+makeBiocBuildShield <- function(pkg,
+                                branch = c("devel", "release")) {
+    branch <- match.arg(branch)
+    stopifnot(is.character(pkg))
+    stopifnot(identical(length(pkg), length(branch)))
+    ## assumes software package!
+    url <- sprintf("http://bioconductor.org/packages/%s/bioc/html/%s.html",
+                   branch, pkg)
+    svg <- sprintf("http://bioconductor.org/shields/build/%s/bioc/%s.svg",
+                   branch, pkg)
+    txt <- paste("Bioconductor", branch, "build status")
+    ans <- sprintf("[![%s](%s)](%s)", txt, svg, url)
+    cat(ans, "\n")
+}
 
-makeBiocCovrShield <- function()
+##' @rdname shields
+##' makeBiocCovrShield("MSnbase")
+##' makeBiocCovrShield("MSnbase", branch = "release")
+makeBiocCovrShield <- function(pkg,
+                               branch = c("devel", "release")) {
+    branch <- match.arg(branch)
+    stopifnot(is.character(pkg))
+    stopifnot(identical(length(pkg), length(branch)))
+    ## assumes software package!
+    b <- ifelse(branch == "devel", "master",
+                paste0("release-", biocVersions()["release"]))
+    url <- sprintf("https://codecov.io/github/Bioconductor-mirror/pkg/branch/master", 
+                   b, pkg)
+    svg <- sprintf("https://bioconductor.org/shields/coverage/%s/%s.svg",
+                   branch, pkg)
+    txt <- paste("Bioconductor", branch, "build status")
+    ans <- sprintf("[![%s](%s)](%s)", txt, svg, url)
+    cat(ans, "\n")
+}
