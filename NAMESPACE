@@ -1,4 +1,8 @@
 export(cputools,
+       makeTravisShield, makeCodecovShield,
+       makeBiocBuildShield, makeBiocCovrShield, 
+       makeGithubUrl, makeGithubPageUrl, makeGithubIssuesUrl,
+       pkgqsts,       
        ht,
        darken, lighten,
        colour_picker,

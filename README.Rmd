@@ -1,0 +1,29 @@
+```{r shields, echo=FALSE, results="asis"}
+suppressPackageStartupMessages(library("cputools"))
+makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
+makeCodecovShield("cputools", user = "ComputationalProteomicsUnit")
+```
+
+# Various helper functions
+
+A set up helper functions to standardise some R and package
+development and documentation.
+
+See also
+[`maker`](https://github.com/computationalproteomicsunit/maker) and
+the [CPU wiki](https://github.com/computationalproteomicsunit/cputools/wiki).
+
+
+See `cputools()` for an list of functions:
+
+```{r cputools}
+library("cputools")
+cputools()
+```
+
+```{r qst, echo=FALSE, results="asis"}
+pkgqsts("cputools", bioc=FALSE, user="ComputationalProteomicsUnit")
+```
+
+
+

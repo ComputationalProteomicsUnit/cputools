@@ -25,9 +25,10 @@ makeTravisShield <- function(pkg, user = options()[["GitHubUserName"]],
     stopifnot(is.character(branch))
     stopifnot(identical(length(pkg), length(user)))
     stopifnot(identical(length(pkg), length(branch)))
-    paste0("[![Build Status](https://travis-ci.org/", user, "/", pkg,
-           ".svg?branch=", branch , ")](https://travis-ci.org/", user,
-           "/", pkg , ")")
+    ans <- paste0("[![Build Status](https://travis-ci.org/", user, "/", pkg,
+                  ".svg?branch=", branch , ")](https://travis-ci.org/", user,
+                  "/", pkg , ")")
+    cat(ans, "\n")
 }
 
 ##' @rdname shields

@@ -76,7 +76,7 @@ pkgqsts <- function(pkg, github = TRUE, bioc = TRUE,
     cat("To get help:\n")
     if (github)
         cat(" - Open a GitHub [issue](",
-            makeGithubIssuesUrl(pkg) , ")\n",
+            makeGithubIssuesUrl(pkg, user = user) , ")\n",
             sep = "")
     if (bioc)
         cat(" - Post your question on the [Bioconductor support site]",
