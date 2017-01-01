@@ -3,26 +3,14 @@ cache: packages
 sudo: false
 
 r:
-  - bioc-devel
-  - bioc-release
-
-bioc_packages:
-  - GO.db
-  - RamiGO
-  - AnnotationDbi
-  - Rgraphviz
+  - devel
+  - release
 
 r_packages:
-  - DBI
   - covr
   
 after_success:
   - Rscript -e 'covr::codecov()'
-
-# print timings (of examples) and sysinfo
-after_script:
-  - dump_logs_by_extension "timings"
-  - dump_sysinfo
 
 notifications:
   email:
