@@ -13,7 +13,9 @@
 ##'     package is provided. For Bioconductor shields (functions
 ##'     \code{makeBiocBuildShield} and \code{makeBiocCovrShield}),
 ##'     branch is one of \code{"devel"} (default) or \code{"release"}.
-##' @return A \code{character} with the shield in markdown.
+##' @return Invisibly returns \code{character} with the shield in
+##'     markdown. Used for its side effect of printing the markdown
+##'     shield.
 ##' @author Laurent Gatto
 ##' @rdname shields
 ##' @examples
@@ -32,6 +34,7 @@ makeTravisShield <- function(pkg, user = options()[["GitHubUserName"]],
                   ".svg?branch=", branch , ")](https://travis-ci.org/", user,
                   "/", pkg , ")")
     cat(ans, "\n")
+    invisible(ans)
 }
 
 ##' @rdname shields
@@ -49,6 +52,7 @@ makeCodecovShield <- function(pkg, user = options()[["GitHubUserName"]],
                   "/graph/badge.svg)](https://codecov.io/gh/", user, "/",
                   pkg, ")")
     cat(ans, "\n")
+    invisible(ans)
 }
 
     
@@ -69,6 +73,7 @@ makeBiocBuildShield <- function(pkg,
     txt <- paste("Bioconductor", branch, "build status")
     ans <- sprintf("[![%s](%s)](%s)", txt, svg, url)
     cat(ans, "\n")
+    invisible(ans)
 }
 
 ##' @rdname shields
@@ -83,11 +88,12 @@ makeBiocCovrShield <- function(pkg,
     ## assumes software package!
     b <- ifelse(branch == "devel", "master",
                 paste0("release-", biocVersions()["release"]))
-    url <- sprintf("https://codecov.io/github/Bioconductor-mirror/pkg/branch/master", 
-                   b, pkg)
+    url <- sprintf("https://codecov.io/github/Bioconductor-mirror/%s/branch/%s",
+                   pkg, b)
     svg <- sprintf("https://bioconductor.org/shields/coverage/%s/%s.svg",
                    branch, pkg)
     txt <- paste("Bioconductor", branch, "build status")
     ans <- sprintf("[![%s](%s)](%s)", txt, svg, url)
     cat(ans, "\n")
+    invisible(ans)
 }
