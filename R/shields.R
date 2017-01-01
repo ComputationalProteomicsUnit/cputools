@@ -49,6 +49,7 @@ makeCodecovShield <- function(pkg, user = options()[["GitHubUserName"]],
 
     
 ##' @rdname shields
+##' @examples
 ##' makeBiocBuildShield("MSnbase")
 ##' makeBiocBuildShield("MSnbase", branch = "release")
 makeBiocBuildShield <- function(pkg,
@@ -67,6 +68,7 @@ makeBiocBuildShield <- function(pkg,
 }
 
 ##' @rdname shields
+##' @examples
 ##' makeBiocCovrShield("MSnbase")
 ##' makeBiocCovrShield("MSnbase", branch = "release")
 makeBiocCovrShield <- function(pkg,
