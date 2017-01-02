@@ -1,5 +1,6 @@
 ##' @title Generates Github URLs
 ##' @return A \code{character} with Github URLs.
+##' @seealso \code{BiocStyle::Githubpkg}
 ##' @examples
 ##' makeGithubUrl("pRoloc", user = "lgatto")
 ##' makeGithubUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")

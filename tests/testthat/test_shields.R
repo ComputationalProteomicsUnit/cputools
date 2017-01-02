@@ -16,3 +16,19 @@ test_that("Bioconductor covr shields", {
     url <- mrkToUrl(mrk)
     expect_true(validUrl(url))
 })
+
+test_that("Travis shield", {
+    sh <- makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
+    sh0 <- "[![Build Status](https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master)](https://travis-ci.org/ComputationalProteomicsUnit/cputools)"
+    expect_identical(sh, sh0)
+    url <- mrkToUrl(sh)
+    expect_true(validUrl(url))
+})
+
+test_that("Codecov shield", {
+    sh <- makeCodecovShield("cputools", user = "ComputationalProteomicsUnit")
+    sh0 <- "[![codecov](https://codecov.io/gh/ComputationalProteomicsUnit/cputools/branch/master/graph/badge.svg)](https://codecov.io/gh/ComputationalProteomicsUnit/cputools)"
+    expect_identical(sh, sh0)
+    url <- mrkToUrl(sh)
+    expect_true(validUrl(url))
+})

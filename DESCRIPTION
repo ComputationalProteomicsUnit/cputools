@@ -1,7 +1,10 @@
 Package: cputools
 Title: Various helper functions
-Version: 0.1.2
-Author: Laurent Gatto <lg390@cam.ac.uk>
+Version: 0.2.0
+Authors@R: person(given = "Laurent",
+                  family = "Gatto",
+		  email = "lg390@cam.ac.uk",
+		  role = c("aut","cre"))
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: Miscellaneous helper functions aimed at facilitating and
     standardising simple repetitive tasks.
