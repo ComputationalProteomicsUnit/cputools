@@ -33,7 +33,9 @@ package is provided. For Bioconductor shields (functions
 branch is one of \code{"devel"} (default) or \code{"release"}.}
 }
 \value{
-A \code{character} with the shield in markdown.
+Invisibly returns \code{character} with the shield in
+    markdown. Used for its side effect of printing the markdown
+    shield.
 }
 \description{
 Functions to generate package travis-ci, codecov, Bioconductor

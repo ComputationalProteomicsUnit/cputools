@@ -61,4 +61,7 @@ pkgqsts("cputools", bioc = FALSE, user = "lgatto")
 \author{
 Laurent Gatto
 }
+\seealso{
+\code{BiocStyle::Githubpkg}
+}
 
