@@ -11,13 +11,16 @@ test_that("cputools", {
 })
 
 test_that("utils: mrkToUrl", {
-    url0 <- "foobar"
     mrk <- "[![blabla](svg)](foobar)"
-    expect_identical(url0, mrkToUrl(mrk))
+    expect_identical("foobar", mrkToUrl(mrk))
+    expect_identical("foobar", mrkToUrl("[blabla](foobar)"))
 })
 
-test_that("utils: validIrl", {
+test_that("utils: validUrl", {
     expect_true(validUrl("http://www.bioconductor.org"))
     expect_true(validUrl("https://www.bioconductor.org"))
     expect_error(validUrl("foo"))
+    ## "*[pRoloc](https://github.com/lgatto/pRoloc)*"
+    url <- mrkToUrl(BiocStyle::Githubpkg("lgatto/pRoloc"))
+    expect_identical(url, "https://github.com/lgatto/pRoloc")
 })

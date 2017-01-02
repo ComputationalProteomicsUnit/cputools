@@ -5,4 +5,3 @@ test_that("Bioconductor version numbers", {
     names(v0) <- c("release", "devel")
     expect_identical(v, v0)
 })
-

@@ -1,5 +1,5 @@
 mrkToUrl <- function(x)
-    gsub("^.+\\((.+)\\)", "\\1", x)
+    gsub("^\\**\\[.+\\]\\((.+)\\).*$", "\\1", x)
 
 validUrl <- function(x) {
         got <- httr::GET(x)

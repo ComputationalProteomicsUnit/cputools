@@ -50,13 +50,13 @@ package.
 }
 \examples{
 makeGithubUrl("pRoloc", user = "lgatto")
-makeGithubUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
+makeGithubUrl(c("pRoloc", "MSnbase"), user = c("lgatto", "lgatto"))
 makeGithubPageUrl("pRoloc", user = "lgatto")
-makeGithubPageUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
+makeGithubPageUrl(c("pRoloc", "pRolocGUI"), user = c("lgatto", "lgatto"))
 makeGithubIssuesUrl("pRoloc", user = "lgatto")
-makeGithubIssuesUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
 pkgqsts("pRoloc", user = "lgatto")
 pkgqsts("cputools", bioc = FALSE, user = "lgatto")
+pkgqsts()
 }
 \author{
 Laurent Gatto

@@ -3,37 +3,43 @@
 ##' @seealso \code{BiocStyle::Githubpkg}
 ##' @examples
 ##' makeGithubUrl("pRoloc", user = "lgatto")
-##' makeGithubUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
+##' makeGithubUrl(c("pRoloc", "MSnbase"), user = c("lgatto", "lgatto"))
 ##' @rdname pkgs
 makeGithubUrl <- function(pkg, user = options()[["GitHubUserName"]]) {
     stopifnot(is.character(user))
     stopifnot(is.character(pkg))
+    stopifnot(identical(length(pkg), length(user)))
     baseurl <- paste0("https://github.com/", user)
-    sapply(pkg, function(x) paste(baseurl, x, sep = "/"))
+    ans <- paste(baseurl, pkg, sep = "/")
+    names(ans) <- pkg
+    ans
 }
 
 ##' @title Generates Github page URLs
 ##' @return A \code{character} with Github page URLs.
 ##' @examples
 ##' makeGithubPageUrl("pRoloc", user = "lgatto")
-##' makeGithubPageUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
+##' makeGithubPageUrl(c("pRoloc", "pRolocGUI"), user = c("lgatto", "lgatto"))
 ##' @rdname pkgs
 makeGithubPageUrl <- function(pkg, user = options()[["GitHubUserName"]]) {
     stopifnot(is.character(user))
     stopifnot(is.character(pkg))
+    stopifnot(identical(length(pkg), length(user)))
     baseurl <- paste0("https://", user, ".github.io")
-    sapply(pkg, function(x) paste(baseurl, x, sep = "/"), USE.NAMES = FALSE)
+    ans <- paste(baseurl, pkg, sep = "/")
+    names(ans) <- pkg
+    ans
 }
 
 ##' @title Generates Github issue pages URLs
 ##' @return A \code{character} with Github page URLs.
 ##' @examples
 ##' makeGithubIssuesUrl("pRoloc", user = "lgatto")
-##' makeGithubIssuesUrl(c("pRoloc", "pRolocGUI"), user = "lgatto")
 ##' @rdname pkgs
 makeGithubIssuesUrl <- function(pkg, user = options()[["GitHubUserName"]]) {
-    ans <- makeGithubUrl(pkg, user)
-    paste0(ans, "/issues")
+    ans <- paste0(makeGithubUrl(pkg, user), "/issues")
+    names(ans) <- pkg
+    ans
 }
 
 ##' Generates a markdown section on where to ask questions about a
@@ -59,6 +65,7 @@ makeGithubIssuesUrl <- function(pkg, user = options()[["GitHubUserName"]]) {
 ##' @examples
 ##' pkgqsts("pRoloc", user = "lgatto")
 ##' pkgqsts("cputools", bioc = FALSE, user = "lgatto")
+##' pkgqsts()
 pkgqsts <- function(pkg, github = TRUE, bioc = TRUE,
                     level = 1L,
                     user = options()[["GitHubUserName"]]) {
