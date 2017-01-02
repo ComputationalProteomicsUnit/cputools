@@ -58,4 +58,5 @@ test_that("pkgqsts", {
     expect_null(pkgqsts())
     expect_error(pkgqsts("pRoloc", FALSE, FALSE))
     expect_error(pkgqsts(, FALSE, FALSE))
+    expect_warning(pkgqsts(c("pRoloc", "pRoloc")))
 })
