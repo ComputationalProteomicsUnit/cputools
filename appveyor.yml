@@ -27,7 +27,7 @@ install:
 
 build_script:
   - echo Current directory=%CD%  
-  - travis-tool.sh install_r testthat httr scales
+  - travis-tool.sh install_r testthat httr scales knitr rmarkdown
   - travis-tool.sh install_bioc BiocStyle
 
 test_script:
