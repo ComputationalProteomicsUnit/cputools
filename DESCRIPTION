@@ -16,5 +16,7 @@ Suggests:
     knitr,
     rmarkdown
 License: GPL-3
+BugReports: https://github.com/ComputationalProteomicsUnit/cputools/issues
+URL: https://github.com/ComputationalProteomicsUnit/cputools
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
