@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master)](https://travis-ci.org/ComputationalProteomicsUnit/cputools) 
 [![codecov](https://codecov.io/gh/ComputationalProteomicsUnit/cputools/branch/master/graph/badge.svg)](https://codecov.io/gh/ComputationalProteomicsUnit/cputools) 
+[![Build status](https://ci.appveyor.com/api/projects/status/rmvj0194ppyq5kxs?svg=true)](https://ci.appveyor.com/project/lgatto/cputools)
 
 # Various helper functions
 
@@ -21,9 +22,11 @@ cputools()
 
 ```
 ## cputools functions:
+##  biocVersions
 ##  color_picker
 ##  colour_picker
 ##  cputools
+##  cpuwww
 ##  darken
 ##  ht
 ##  lighten

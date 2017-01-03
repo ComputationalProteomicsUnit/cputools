@@ -3,6 +3,7 @@ suppressPackageStartupMessages(library("cputools"))
 makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
 makeCodecovShield("cputools", user = "ComputationalProteomicsUnit")
 ```
+[![Build status](https://ci.appveyor.com/api/projects/status/rmvj0194ppyq5kxs?svg=true)](https://ci.appveyor.com/project/lgatto/cputools)
 
 # Various helper functions
 
