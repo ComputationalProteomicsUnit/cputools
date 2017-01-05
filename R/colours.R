@@ -19,7 +19,7 @@ darken <- function(color, factor=1.4){
     col <- rgb(t(col), maxColorValue=255)
     col
 }
- 
+
 ##' @rdname darken 
 lighten <- function(color, factor=1.4){
     col <- col2rgb(color)
@@ -37,8 +37,7 @@ lighten <- function(color, factor=1.4){
 colour_picker <- function() {
     n <- length(colours())
     i <- 26
-    m <- matrix(c(1:n, rep(NA, m)),
-                ncol = i, nrow = i)
+    m <- matrix(c(1:n, rep(NA, (i^2 - n))), ncol = i, nrow = i)
     ## plotting
     image(m, col = colours(),
           xaxt = "n", yaxt = "n")
