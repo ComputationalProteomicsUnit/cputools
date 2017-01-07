@@ -5,9 +5,13 @@
 \alias{colour_picker}
 \title{A simple colour picker}
 \usage{
-colour_picker()
+colour_picker(hcl = TRUE)
 
-color_picker()
+color_picker(hcl = TRUE)
+}
+\arguments{
+\item{hcl}{If \code{TRUE} (default), transforms the colour names
+to hcl using \code{scale::col2hcl}.}
 }
 \value{
 A vector of colours.

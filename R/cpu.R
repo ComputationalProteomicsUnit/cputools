@@ -3,7 +3,6 @@
 ##' @title Return the CPU webpage url.
 ##' @return The URL as a \code{character}
 ##' @author Laurent Gatto
-##' @rdname
 ##' @examples
 ##' cpuwww()
 cpuwww <- function()

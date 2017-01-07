@@ -13,10 +13,10 @@
 ##' plot(c(1.5, 2, 2.5), c(1, 1.25, 1),
 ##'      pch = 19, cex = 150,
 ##'      col = c(darkFirebrick, "firebrick", lightFirebrick))
-darken <- function(color, factor=1.4){
+darken <- function(color, factor = 1.4){
     col <- col2rgb(color)
     col <- col / factor
-    col <- rgb(t(col), maxColorValue=255)
+    col <- rgb(t(col), maxColorValue = 255)
     col
 }
 
@@ -34,7 +34,9 @@ lighten <- function(color, factor=1.4){
 ##' @title A simple colour picker
 ##' @return A vector of colours.
 ##' @author Laurent Gatto
-colour_picker <- function() {
+##' @param hcl If \code{TRUE} (default), transforms the colour names
+##'     to hcl using \code{scale::col2hcl}.
+colour_picker <- function(hcl = TRUE) {
     n <- length(colours())
     i <- 26
     m <- matrix(c(1:n, rep(NA, (i^2 - n))), ncol = i, nrow = i)
@@ -63,7 +65,8 @@ colour_picker <- function() {
         res
     }
     ans <- identifycol(kk)
-    ans <- col2hcl(colours()[ans])
+    if (hcl)
+        ans <- col2hcl(colours()[ans])
     return(ans)
 }
 
