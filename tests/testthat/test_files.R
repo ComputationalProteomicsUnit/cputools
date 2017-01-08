@@ -12,3 +12,8 @@ test_that("pdf and png", {
     unlink(paste0(f, ".pdf"))
     unlink(paste0(f, ".png"))
 })
+
+test_that("make[Dat|Fig]Name", {
+    expect_identical(makeFigName("foo", date = FALSE), "./Fig-foo.pdf")
+    expect_identical(makeDatName("foo", date = FALSE), "./Dat-foo.rda")
+})
