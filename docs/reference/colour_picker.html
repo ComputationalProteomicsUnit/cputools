@@ -85,21 +85,37 @@
 <code>colours()</code>. Uses the current device is none is open.</p>
     
 
-    <pre><span class='fu'>colour_picker</span>()
+    <pre><span class='fu'>colour_picker</span>(<span class='kw'>hcl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='fu'>color_picker</span>()</pre>
-        
+<span class='fu'>color_picker</span>(<span class='kw'>hcl</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <dl class="dl-horizontal">
+      <dt>hcl</dt>
+      <dd>If <code>TRUE</code> (default), transforms the colour names
+to hcl using <code>scale::col2hcl</code>.</dd>
+    </dl>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A vector of colours.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>The <code>codourpicker</code> package by Dean Attali is a much
+    more elaborate version of this function
+    <a href = 'https://github.com/daattali/colourpicker'>https://github.com/daattali/colourpicker</a>.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
           </ul>
 
     <h2>Author</h2>

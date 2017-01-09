@@ -23,4 +23,9 @@ A simple interface to manually pick colours from
 \author{
 Laurent Gatto
 }
+\seealso{
+The \code{codourpicker} package by Dean Attali is a much
+    more elaborate version of this function
+    \url{https://github.com/daattali/colourpicker}.
+}
 

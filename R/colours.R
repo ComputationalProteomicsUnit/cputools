@@ -33,6 +33,9 @@ lighten <- function(color, factor=1.4){
 ##'
 ##' @title A simple colour picker
 ##' @return A vector of colours.
+##' @seealso The \code{codourpicker} package by Dean Attali is a much
+##'     more elaborate version of this function
+##'     \url{https://github.com/daattali/colourpicker}.
 ##' @author Laurent Gatto
 ##' @param hcl If \code{TRUE} (default), transforms the colour names
 ##'     to hcl using \code{scale::col2hcl}.
