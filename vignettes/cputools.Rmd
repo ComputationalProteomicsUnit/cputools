@@ -1,0 +1,228 @@
+---
+title: "Standardising R package development"
+author: 
+- name: Laurent Gatto
+  affiliation: Computational Proteomics Unit, Cambridge, UK
+package: cputools
+abstract: >
+  The `r BiocStyle:::Githubpkg("ComputationalProteomicsUnit/cputools")`
+  package provides a set of helper functions and guidelines to
+  streamline and standardise package development and data analysis
+  reporting for the `r cputools::cpuwww()` group.  
+output:
+  BiocStyle::html_document2:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{Standardising R package development}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteKeywords{Infrastructure}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r env, echo=FALSE}
+suppressPackageStartupMessages(library("BiocStyle"))
+```
+
+> This is work in progress.
+
+# Introduction
+
+This vignette summarises some *good practice* for R programming and
+package development. I tend to follow these myself and advise my
+collaborators to use them when we work on projects together.
+
+
+```{r lib}
+library("cputools")
+```
+
+See also the
+[CPU wiki](https://github.com/ComputationalProteomicsUnit/cputools/wiki)
+for a non-exhaustive list. 
+
+# DESCRIPTION 
+
+> Use `Authors@R` to define authors and their respective roles. 
+
+This is a requirement to generate package webpages with 
+`r Githubpkg("pkgdown")` later on.
+
+
+# README files
+
+`README` files are important for any software project, as they provide
+an obvious first entry point to read more about the package. On
+github, using markdown makes them visually appealing. Using R markdown
+enables to include dynamically generated content. Finally, as we will
+see below, they can be used to easily produce a compelling and useful
+webpage for the R package.
+
+> Create a `README.Rmd` file.
+
+The default pipeline will this be to *knit* the `REAMDE.Rmd` file to
+`READEM.md` using the `knitr::knit` function. To avoid the two file to
+come out of sync when forgetting to `knit`. To avoid this, one can set
+up a git hook, more specifically a `pre-commit` hook, that will check
+that the `Rmd` file is not more recent than the `md` file.
+
+
+The simplest is to use `devtools::use_readme_rmd()` to create the
+`README.Rmd` template (see
+[*Important files*](http://r-pkgs.had.co.nz/release.html#important-files))
+in the *Advanced R* book. This pre-commit hook
+`./.git/hooks/pre-commit` will contain 
+
+```sh
+#!/bin/bash
+README=($(git diff --cached --name-only | grep -Ei '^README\.[R]?md$'))
+MSG="use 'git commit --no-verify' to override this check"
+
+if [[ ${#README[@]} == 0 ]]; then
+  exit 0
+fi
+
+if [[ README.Rmd -nt README.md ]]; then
+  echo -e "README.md is out of date; please re-knit README.Rmd\n$MSG"
+  exit 1
+elif [[ ${#README[@]} -lt 2 ]]; then
+  echo -e "README.Rmd and README.md should be both staged\n$MSG"
+  exit 1
+fi
+```
+
+To create the hook if you already have a `README.Rmd` file, use
+`devtools::use_git_hook`:
+
+```{r precommithook, eval=FALSE}
+devtools::use_git_hook("pre-commit", devtools:::render_template("readme-rmd-pre-commit.sh"))
+```
+
+See `?use_git_hook` for details.
+
+> Add a `pre-commit hook`
+
+# Code versioning, dissemination and issues
+
+
+
+# Continous integration
+
+- Suggest travis. Explain how to set up.
+- If want to use another system, please document it here.
+
+- Biocondcutor packages are testing on all platforms. Not necessary to
+  have additional third-pary CI.
+
+
+# Adding status
+
+Status shields provide quick visual information regarding the
+build/check status of your package and it's testing coverage. 
+
+## Bioconductor shields
+
+If the package is on Biocondcutor, then the build/check status and
+testing coverage will be provided by them and the shields can be
+directly generated with the `makeBiocBuildShield` and
+`makeBiocCovrShield`. Below is an example for the `hpar` package.
+
+
+```{r}
+makeBiocBuildShield("hpar")
+makeBiocCovrShield("hpar")
+```
+
+```{r, echo=FALSE, results = "asis"}
+makeBiocBuildShield("hpar")
+makeBiocCovrShield("hpar")
+```
+
+By default, the shields for the devel branch are produced. Use `branch
+= "release"` to use the release branch.
+
+> If your package is on Bioconductor, display the build and coverage
+> shields.
+
+## Travis shield
+
+If the package is not on Bioconductor, you'll have to set up a
+continuous integration server that automatically builds and checks
+your package. I recommend [travis-ci](https://travis-ci.org/) for
+linux (and OSX, although I haven't successfully used that myself) and
+appveyor for windows to build/check the package and 
+`r CRANpkg("covr")` and [codecov](https://codecov.io/) for test coverage.
+
+
+```{r}
+makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
+```
+
+```{r, echo=FALSE, results = "asis"}
+makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
+```
+
+> Add a travis build/check shield, unless there's already a
+> Bioconductor shield.
+
+Note: I haven't looked up how to automatically generate the code for a
+codecov shield yet, so that one will have to be cut and pasted
+manually.
+
+## Bioc and/or travis
+
+
+
+# Asking for help
+
+It is important to provide a venue for users to ask for help and
+report bugs. I tend to use two channels for that, namely GitHub issues
+and, for Bioconductor package, the Bioconductor support site. The
+`pkgqsts` function will create a default section (level 2 below,
+default is 1):
+
+```{r pkgqst0, eval=TRUE}
+pkgqsts("cputools", level = 2L)
+```
+
+As this package is not on Bioconductor, the Bioconductor support site
+is disables with `bioc = FALSE` and rendered as shown below.
+
+```{r pkgqst, eval=TRUE, results='asis'}
+pkgqsts("cputools", bioc=FALSE, level = 2L)
+```
+
+> Add a *Questions and support* section.
+
+Note that this section can be added to the `README.Rmd` file and in
+the package vignette.
+
+
+
+Asking a question is not a straightforward thing. Here are some
+resources to guide users: 
+
+- Think carefully where to ask you question, where you'll reach the
+  people most qualified to answer it:
+  [Bioconductor support](https://support.bioconductor.org/) forum,
+  [Stackoverflow](https://stackoverflow.com/),
+  [Stackoverflow with `r` tag](https://stackoverflow.com/questions/tagged/r),
+  Bioc-devel mailing list, specific Github repositories, ...
+- Don't cross-post.
+- Always provide your `sessionInfo()`
+- Jenny Bryans's [`reprex`](https://github.com/jennybc/reprex) package.
+- [How to write a reproducible example](http://adv-r.had.co.nz/Reproducibility.html)
+
+To update or discuss this, please use this
+issue^[https://github.com/ComputationalProteomicsUnit/cputools/issues/3]
+or send directly a pull request.
+
+# Testing coverage
+
+# Package webpage
+
+# Session information
+
+```{r si}
+sessionInfo()
+```
+
