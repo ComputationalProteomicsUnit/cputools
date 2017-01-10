@@ -39,6 +39,66 @@ See also the
 [CPU wiki](https://github.com/ComputationalProteomicsUnit/cputools/wiki)
 for a non-exhaustive list. 
 
+## GitHub user
+
+Several function in the `cputools` package require a GitHub user name
+to generate correct links to the software's page using
+`makeGithubUrl`, for example. The user name, when not provided
+explicitly, is fetched from the session options with
+`options("GitHubUserName")`, which can be set in your `.Rprofile`
+using
+
+
+```r
+options(GitHubUserName = "ComputationalProteomicsUnit")
+```
+
+If set, one can just call this function above with 
+
+
+```r
+makeGithubUrl("cputools")
+```
+
+Otherwise, the user can be specified explicitly with 
+
+
+```r
+makeGithubUrl("cputools", user = "ComputationalProteomicsUnit")
+```
+
+# Credibility
+
+Demonstrate good programming skills by writing clean and maintainable
+code, provide good documentation and follow good community practice. I
+would recommend to follow the
+[Bioconductor guidelines](https://bioconductor.org/developers/package-guidelines/)
+for package development and submission, in particular good
+documentation, vignettes and unit testing. I would also add continous
+integration (see below) to this.
+
+An essential aspect is to officially release the package. This can be
+done by submitting it to a public package repository such as CRAN or
+Biocondcutor. For any package related to high throughput biology,
+acceptance to Bioconductor is becoming, in my opinion, a
+requirement. It doesn't mean that there aren't any good
+biology-related packages that are not in Bioconductor, or that all
+packages in Bioconductor are first class packages, but any serious
+package developer should ideally develope a package that matches
+Bioconductor standards and review. A package that is only available on
+a personal web page might not be reagarded positively in a first
+instance; a package that has passed a well defined and formal review
+process (and has been looked at by an experience R developer, which is
+probably more that most of the bioinformatics tools available out
+there), shows that the authors cared enough about his work to polish
+it to Bioconductor standards.
+
+If the package is not to be submitted to Bioconductor (in particular
+if it doesn't fall into the project's remit), then the developer
+should implement their own continous integration system (see below) to
+demonstrate that the package successfully builds/checks on a
+third-party infrastructure, ideally on different systems.
+
 # DESCRIPTION 
 
 > Use `Authors@R` to define authors and their respective roles. 
@@ -132,19 +192,12 @@ directly generated with the `makeBiocBuildShield` and
 makeBiocBuildShield("hpar")
 ```
 
-```
-## [![Bioconductor devel build status](http://bioconductor.org/shields/build/devel/bioc/hpar.svg)](http://bioconductor.org/packages/devel/bioc/html/hpar.html)
-```
+[![Bioconductor devel build status](http://bioconductor.org/shields/build/devel/bioc/hpar.svg)](http://bioconductor.org/packages/devel/bioc/html/hpar.html) 
 
 ```r
 makeBiocCovrShield("hpar")
 ```
 
-```
-## [![Bioconductor devel build status](https://bioconductor.org/shields/coverage/devel/hpar.svg)](https://codecov.io/github/Bioconductor-mirror/hpar/branch/master)
-```
-
-[![Bioconductor devel build status](http://bioconductor.org/shields/build/devel/bioc/hpar.svg)](http://bioconductor.org/packages/devel/bioc/html/hpar.html) 
 [![Bioconductor devel build status](https://bioconductor.org/shields/coverage/devel/hpar.svg)](https://codecov.io/github/Bioconductor-mirror/hpar/branch/master) 
 
 By default, the shields for the devel branch are produced. Use `branch
@@ -168,10 +221,6 @@ appveyor for windows to build/check the package and
 makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
 ```
 
-```
-## [![Build Status](https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master)](https://travis-ci.org/ComputationalProteomicsUnit/cputools)
-```
-
 [![Build Status](https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master)](https://travis-ci.org/ComputationalProteomicsUnit/cputools) 
 
 > Add a travis build/check shield, unless there's already a
@@ -183,8 +232,6 @@ manually.
 
 ## Bioc and/or travis
 
-
-
 # Asking for help
 
 It is important to provide a venue for users to ask for help and
@@ -195,13 +242,13 @@ default is 1):
 
 
 ```r
-pkgqsts("cputools", level = 2L)
+pkgqsts("cputools", level = 2L, user = "ComputationalProteomicsUnit")
 ```
 
 ```
 ## ## Questions and support
 ## To get help:
-##  - Open a GitHub [issue](https://github.com/lgatto/cputools/issues)
+##  - Open a GitHub [issue](https://github.com/ComputationalProteomicsUnit/cputools/issues)
 ##  - Post your question on the [Bioconductor support site](https://support.bioconductor.org/)
 ```
 
@@ -210,12 +257,12 @@ is disables with `bioc = FALSE` and rendered as shown below.
 
 
 ```r
-pkgqsts("cputools", bioc=FALSE, level = 2L)
+pkgqsts("cputools", bioc=FALSE, level = 2L, user = "ComputationalProteomicsUnit")
 ```
 
 ## Questions and support
 To get help:
- - Open a GitHub [issue](https://github.com/lgatto/cputools/issues)
+ - Open a GitHub [issue](https://github.com/ComputationalProteomicsUnit/cputools/issues)
 
 > Add a *Questions and support* section.
 
@@ -239,7 +286,8 @@ resources to guide users:
 - [How to write a reproducible example](http://adv-r.had.co.nz/Reproducibility.html)
 
 To update or discuss this, please use this
-issue[^https://github.com/ComputationalProteomicsUnit/cputools/issues/3]
+issue^[https://github.com/ComputationalProteomicsUnit/cputools/issues/3]
+or send directly a pull request.
 
 # Testing coverage
 

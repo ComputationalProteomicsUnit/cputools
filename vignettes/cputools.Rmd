@@ -50,20 +50,52 @@ explicitly, is fetched from the session options with
 using
 
 ```{r user, eval=FALSE}
-options(GitHubUserName = "lgatto")
+options(GitHubUserName = "ComputationalProteomicsUnit")
 ```
 
 If set, one can just call this function above with 
 
 ```{r urlex, eval=FALSE}
-makeGithubUrl("mypkg")
+makeGithubUrl("cputools")
 ```
 
 Otherwise, the user can be specified explicitly with 
 
 ```{r urlex2, eval=FALSE}
-makeGithubUrl("mypkg", user = "user")
+makeGithubUrl("cputools", user = "ComputationalProteomicsUnit")
 ```
+
+# Credibility
+
+Demonstrate good programming skills by writing clean and maintainable
+code, provide good documentation and follow good community practice. I
+would recommend to follow the
+[Bioconductor guidelines](https://bioconductor.org/developers/package-guidelines/)
+for package development and submission, in particular good
+documentation, vignettes and unit testing. I would also add continous
+integration (see below) to this.
+
+An essential aspect is to officially release the package. This can be
+done by submitting it to a public package repository such as CRAN or
+Biocondcutor. For any package related to high throughput biology,
+acceptance to Bioconductor is becoming, in my opinion, a
+requirement. It doesn't mean that there aren't any good
+biology-related packages that are not in Bioconductor, or that all
+packages in Bioconductor are first class packages, but any serious
+package developer should ideally develope a package that matches
+Bioconductor standards and review. A package that is only available on
+a personal web page might not be reagarded positively in a first
+instance; a package that has passed a well defined and formal review
+process (and has been looked at by an experience R developer, which is
+probably more that most of the bioinformatics tools available out
+there), shows that the authors cared enough about his work to polish
+it to Bioconductor standards.
+
+If the package is not to be submitted to Bioconductor (in particular
+if it doesn't fall into the project's remit), then the developer
+should implement their own continous integration system (see below) to
+demonstrate that the package successfully builds/checks on a
+third-party infrastructure, ideally on different systems.
 
 # DESCRIPTION 
 
@@ -152,12 +184,7 @@ directly generated with the `makeBiocBuildShield` and
 `makeBiocCovrShield`. Below is an example for the `hpar` package.
 
 
-```{r}
-makeBiocBuildShield("hpar")
-makeBiocCovrShield("hpar")
-```
-
-```{r, echo=FALSE, results = "asis"}
+```{r, results = "asis"}
 makeBiocBuildShield("hpar")
 makeBiocCovrShield("hpar")
 ```
@@ -178,11 +205,7 @@ appveyor for windows to build/check the package and
 `r CRANpkg("covr")` and [codecov](https://codecov.io/) for test coverage.
 
 
-```{r}
-makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
-```
-
-```{r, echo=FALSE, results = "asis"}
+```{r travisshield, results = "asis"}
 makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
 ```
 

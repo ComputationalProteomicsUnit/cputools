@@ -22,10 +22,10 @@ makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
 makeTravisShield("cputools", user = "ComputationalProteomicsUnit")
 
 ## ----pkgqst0, eval=TRUE----------------------------------------------------
-pkgqsts("cputools", level = 2L)
+pkgqsts("cputools", level = 2L, user = "ComputationalProteomicsUnit")
 
 ## ----pkgqst, eval=TRUE, results='asis'-------------------------------------
-pkgqsts("cputools", bioc=FALSE, level = 2L)
+pkgqsts("cputools", bioc=FALSE, level = 2L, user = "ComputationalProteomicsUnit")
 
 ## ----si--------------------------------------------------------------------
 sessionInfo()

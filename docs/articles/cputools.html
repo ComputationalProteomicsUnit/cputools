@@ -80,6 +80,23 @@
 <p>This vignette summarises some <em>good practice</em> for R programming and package development. I tend to follow these myself and advise my collaborators to use them when we work on projects together.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"cputools"</span>)</code></pre>
 <p>See also the <a href="https://github.com/ComputationalProteomicsUnit/cputools/wiki">CPU wiki</a> for a non-exhaustive list.</p>
+<div id="github-user" class="section level2">
+<h2 class="hasAnchor">
+<html><body><a href="#github-user" class="anchor"> </a></body></html>GitHub user</h2>
+<p>Several function in the <code>cputools</code> package require a GitHub user name to generate correct links to the software’s page using <code>makeGithubUrl</code>, for example. The user name, when not provided explicitly, is fetched from the session options with <code>options("GitHubUserName")</code>, which can be set in your <code>.Rprofile</code> using</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">GitHubUserName =</span> <span class="st">"ComputationalProteomicsUnit"</span>)</code></pre>
+<p>If set, one can just call this function above with</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">makeGithubUrl</a></span>(<span class="st">"cputools"</span>)</code></pre>
+<p>Otherwise, the user can be specified explicitly with</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">makeGithubUrl</a></span>(<span class="st">"cputools"</span>, <span class="dt">user =</span> <span class="st">"ComputationalProteomicsUnit"</span>)</code></pre>
+</div>
+</div>
+<div id="credibility" class="section level1">
+<h1 class="hasAnchor">
+<html><body><a href="#credibility" class="anchor"> </a></body></html>Credibility</h1>
+<p>Demonstrate good programming skills by writing clean and maintainable code, provide good documentation and follow good community practice. I would recommend to follow the <a href="https://bioconductor.org/developers/package-guidelines/">Bioconductor guidelines</a> for package development and submission, in particular good documentation, vignettes and unit testing. I would also add continous integration (see below) to this.</p>
+<p>An essential aspect is to officially release the package. This can be done by submitting it to a public package repository such as CRAN or Biocondcutor. For any package related to high throughput biology, acceptance to Bioconductor is becoming, in my opinion, a requirement. It doesn’t mean that there aren’t any good biology-related packages that are not in Bioconductor, or that all packages in Bioconductor are first class packages, but any serious package developer should ideally develope a package that matches Bioconductor standards and review. A package that is only available on a personal web page might not be reagarded positively in a first instance; a package that has passed a well defined and formal review process (and has been looked at by an experience R developer, which is probably more that most of the bioinformatics tools available out there), shows that the authors cared enough about his work to polish it to Bioconductor standards.</p>
+<p>If the package is not to be submitted to Bioconductor (in particular if it doesn’t fall into the project’s remit), then the developer should implement their own continous integration system (see below) to demonstrate that the package successfully builds/checks on a third-party infrastructure, ideally on different systems.</p>
 </div>
 <div id="description" class="section level1">
 <h1 class="hasAnchor">
@@ -142,10 +159,9 @@ fi</code></pre>
 <html><body><a href="#bioconductor-shields" class="anchor"> </a></body></html>Bioconductor shields</h2>
 <p>If the package is on Biocondcutor, then the build/check status and testing coverage will be provided by them and the shields can be directly generated with the <code>makeBiocBuildShield</code> and <code>makeBiocCovrShield</code>. Below is an example for the <code>hpar</code> package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeTravisShield.html">makeBiocBuildShield</a></span>(<span class="st">"hpar"</span>)</code></pre>
-<pre><code>## [![Bioconductor devel build status](http://bioconductor.org/shields/build/devel/bioc/hpar.svg)](http://bioconductor.org/packages/devel/bioc/html/hpar.html)</code></pre>
+<p><a href="http://bioconductor.org/packages/devel/bioc/html/hpar.html"><img src="http://bioconductor.org/shields/build/devel/bioc/hpar.svg" alt="Bioconductor devel build status"></a></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeTravisShield.html">makeBiocCovrShield</a></span>(<span class="st">"hpar"</span>)</code></pre>
-<pre><code>## [![Bioconductor devel build status](https://bioconductor.org/shields/coverage/devel/hpar.svg)](https://codecov.io/github/Bioconductor-mirror/hpar/branch/master)</code></pre>
-<p><a href="http://bioconductor.org/packages/devel/bioc/html/hpar.html"><img src="http://bioconductor.org/shields/build/devel/bioc/hpar.svg" alt="Bioconductor devel build status"></a> <a href="https://codecov.io/github/Bioconductor-mirror/hpar/branch/master"><img src="https://bioconductor.org/shields/coverage/devel/hpar.svg" alt="Bioconductor devel build status"></a></p>
+<p><a href="https://codecov.io/github/Bioconductor-mirror/hpar/branch/master"><img src="https://bioconductor.org/shields/coverage/devel/hpar.svg" alt="Bioconductor devel build status"></a></p>
 <p>By default, the shields for the devel branch are produced. Use <code>branch = "release"</code> to use the release branch.</p>
 <blockquote>
 <p>If your package is on Bioconductor, display the build and coverage shields.</p>
@@ -156,7 +172,6 @@ fi</code></pre>
 <html><body><a href="#travis-shield" class="anchor"> </a></body></html>Travis shield</h2>
 <p>If the package is not on Bioconductor, you’ll have to set up a continuous integration server that automatically builds and checks your package. I recommend <a href="https://travis-ci.org/">travis-ci</a> for linux (and OSX, although I haven’t successfully used that myself) and appveyor for windows to build/check the package and <em><a href="http://cran.fhcrc.org/web/packages/covr/index.html">covr</a></em> and <a href="https://codecov.io/">codecov</a> for test coverage.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeTravisShield.html">makeTravisShield</a></span>(<span class="st">"cputools"</span>, <span class="dt">user =</span> <span class="st">"ComputationalProteomicsUnit"</span>)</code></pre>
-<pre><code>## [![Build Status](https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master)](https://travis-ci.org/ComputationalProteomicsUnit/cputools)</code></pre>
 <p><a href="https://travis-ci.org/ComputationalProteomicsUnit/cputools"><img src="https://travis-ci.org/ComputationalProteomicsUnit/cputools.svg?branch=master" alt="Build Status"></a></p>
 <blockquote>
 <p>Add a travis build/check shield, unless there’s already a Bioconductor shield.</p>
@@ -172,13 +187,13 @@ fi</code></pre>
 <h1 class="hasAnchor">
 <html><body><a href="#asking-for-help" class="anchor"> </a></body></html>Asking for help</h1>
 <p>It is important to provide a venue for users to ask for help and report bugs. I tend to use two channels for that, namely GitHub issues and, for Bioconductor package, the Bioconductor support site. The <code>pkgqsts</code> function will create a default section (level 2 below, default is 1):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">pkgqsts</a></span>(<span class="st">"cputools"</span>, <span class="dt">level =</span> 2L)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">pkgqsts</a></span>(<span class="st">"cputools"</span>, <span class="dt">level =</span> 2L, <span class="dt">user =</span> <span class="st">"ComputationalProteomicsUnit"</span>)</code></pre>
 <pre><code>## ## Questions and support
 ## To get help:
 ##  - Open a GitHub [issue](https://github.com/ComputationalProteomicsUnit/cputools/issues)
 ##  - Post your question on the [Bioconductor support site](https://support.bioconductor.org/)</code></pre>
 <p>As this package is not on Bioconductor, the Bioconductor support site is disables with <code>bioc = FALSE</code> and rendered as shown below.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">pkgqsts</a></span>(<span class="st">"cputools"</span>, <span class="dt">bioc=</span><span class="ot">FALSE</span>, <span class="dt">level =</span> 2L)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/makeGithubUrl.html">pkgqsts</a></span>(<span class="st">"cputools"</span>, <span class="dt">bioc=</span><span class="ot">FALSE</span>, <span class="dt">level =</span> 2L, <span class="dt">user =</span> <span class="st">"ComputationalProteomicsUnit"</span>)</code></pre>
 <div id="questions-and-support" class="section level2">
 <h2 class="hasAnchor">
 <html><body><a href="#questions-and-support" class="anchor"> </a></body></html>Questions and support</h2>
@@ -256,7 +271,12 @@ fi</code></pre>
         <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
+<li>
+<a href="#introduction">Introduction</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#github-user">GitHub user</a></li>
+      </ul>
+</li>
+      <li><a href="#credibility">Credibility</a></li>
       <li><a href="#description">DESCRIPTION</a></li>
       <li><a href="#readme-files">README files</a></li>
       <li><a href="#code-versioning-dissemination-and-issues">Code versioning, dissemination and issues</a></li>
