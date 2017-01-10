@@ -40,6 +40,31 @@ See also the
 [CPU wiki](https://github.com/ComputationalProteomicsUnit/cputools/wiki)
 for a non-exhaustive list. 
 
+## GitHub user
+
+Several function in the `cputools` package require a GitHub user name
+to generate correct links to the software's page using
+`makeGithubUrl`, for example. The user name, when not provided
+explicitly, is fetched from the session options with
+`options("GitHubUserName")`, which can be set in your `.Rprofile`
+using
+
+```{r user, eval=FALSE}
+options(GitHubUserName = "lgatto")
+```
+
+If set, one can just call this function above with 
+
+```{r urlex, eval=FALSE}
+makeGithubUrl("mypkg")
+```
+
+Otherwise, the user can be specified explicitly with 
+
+```{r urlex2, eval=FALSE}
+makeGithubUrl("mypkg", user = "user")
+```
+
 # DESCRIPTION 
 
 > Use `Authors@R` to define authors and their respective roles. 
@@ -170,8 +195,6 @@ manually.
 
 ## Bioc and/or travis
 
-
-
 # Asking for help
 
 It is important to provide a venue for users to ask for help and
@@ -181,14 +204,14 @@ and, for Bioconductor package, the Bioconductor support site. The
 default is 1):
 
 ```{r pkgqst0, eval=TRUE}
-pkgqsts("cputools", level = 2L)
+pkgqsts("cputools", level = 2L, user = "ComputationalProteomicsUnit")
 ```
 
 As this package is not on Bioconductor, the Bioconductor support site
 is disables with `bioc = FALSE` and rendered as shown below.
 
 ```{r pkgqst, eval=TRUE, results='asis'}
-pkgqsts("cputools", bioc=FALSE, level = 2L)
+pkgqsts("cputools", bioc=FALSE, level = 2L, user = "ComputationalProteomicsUnit")
 ```
 
 > Add a *Questions and support* section.
